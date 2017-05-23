@@ -129,11 +129,32 @@ var ViewModel = function() {
                 newSite.marker.addListener('click', function() {
                     self.handleClick(newSite);
                 });
+
                 self.sites.push(newSite);
             } else {
                 alert("Site List is messed");
             }
         });
+    });
+
+
+    // --Filter site with connected marker--
+    this.filter = ko.observable("");
+    this.selectedSites = ko.computed(function() {
+        var select = self.filter().toLowerCase();
+        if (!select) {
+            // Set all site visible with no input
+            self.sites().forEach(function(site) {
+                return site.marker.setVisible(true);
+            });
+            return self.sites().filter(function(site) {
+                var selected = site.name
+                .toLowerCase()
+                .indexOf(select) >= 0;
+                site.marker.setVisible(selected);
+                return selected;
+            });
+        }
     });
 
 
