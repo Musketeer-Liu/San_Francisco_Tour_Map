@@ -1,58 +1,78 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA_Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, inital-scale=1">
-    <title>San Francisco Site Guide</title>
-    <link rel="stylesheet" href="css/map.css">
-    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
-</head>
+    <head lang="en">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA_Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, inital-scale=1">
+        <title>San Francisco Site Guide</title>
+        <link rel="stylesheet" href="css/map.css">
+        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    </head>
 
 
-<body>
-    <div class="box">
-        <div class="bar">
-            <input type="text" placeholder="Select from Site List">
-            <ul>
-                <li name="list content"></li>
-            </ul>
-        </div>
-    </div>
-
-    <div type="text/html" id="window-model">
-        <h2></h2>
-
-        <hr>
-        <p><a href=""></a></p>
-        <address></address>
-
-        <br>
-        <button class="button">
-            Details
-        </button>
-    </div>
-
-    <div class="window">
-        <div id="detail">
-
-
-
+    <body>
+        <div class="box">
+            <div class="bar">
+                <input type="text" databind="filter" placeholder="Select from Site List">
+                <ul data-bind="foreach: selectedSites">
+                    <li data-bind="text:name, click: $parent.handle" name="list content"></li>
+                </ul>
+            </div>
         </div>
 
-        <hr>
-        <button class="button">
-            Close
-        </button>
-    </div>
+        <script type="text/html" id="window-model">
+            <h2 data-bind="text: name"></h2>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+            <hr>
+            <p><a href="" data-bind="src: url, text: url"></a></p>
+            <address data-bind="text: address"></address>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            <br>
+            <button class="button" data-bind="click: $parent.detail">
+                Details
+            </button>
+        </script>
 
-    <script src="js/map.js"></script>
+        <div class="window" data-bind="visible: openDetail, with: currentSite">
+            <div id="detail">
+                <h1 data-bind="text: name"></h1>
 
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ&v=3&callback=initMap"></script>
+                <hr>
+                <div>
+                    <img data-bind="viewUrl" src="viewUrl">
+                </div>
 
-</body>
+                <p><a href="" data-bind="src: url, text: url"></a></p>
+                <address data-bind="text: address"></address>
+
+                <div data-bind="if: wikiText"></div>
+                    <p data-bind="text: wikiText"></p>
+                    <a href="" data-bind="if: wikiUrl, attr: {href: wikiUrl}" target="_blank">
+                        Link to Wikipedia for more information
+                    </a>
+                </div>
+
+                <div data-bind="if: nytText">
+                    <p data-bind="text: nytText"></p>
+                    <a href="" data-bind="if: nytUrl, attr: {href: nytUrl}" target="_blank">
+                        Link to NY Times for more information
+                    </a>
+                </div>
+
+                <hr>
+                <button class="button" data-bind="click: $parent.detail">
+                    Close
+                </button>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+        <script src="js/map.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ&v=3&callback=initMap"></script>
+
+    </body>
 </html>
