@@ -1,0 +1,71 @@
+List of famous sites in San Francisco Site
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=Golden+Gate+Bridge,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "EipHb2xkZW4gR2F0ZSBCcmlkZ2UsIFNhbiBGcmFuY2lzY28sIENBLCBVU0E",
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=Palace+of+Fine+Arts+Theatre,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJRb6WFtWGhYARLN9EOlXR2JI"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=1040+Lombard+Street,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJoxKnduaAhYAReZH9DD0uQ-o"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=Coit+Tower,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJAQAAQIyAhYARRN3yIQG4hd4"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=Fishermans+wharf,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJueOuefqAhYARapAU-YtbztA"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=cathedral+of+saint+mary+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJY2eH8L2AhYARx7eYYhTWTKU"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=saint+peter+paul+church,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJR72bU_CAhYAR7Kzo-OE5GyQ"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=alcatraz+island,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJmRyMs_mAhYARpViaf6JEWNE"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=ATT+park,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJ_T25cNd_j4ARehGmHe0pT84"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=tiled+steps,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJZbB4wmGHhYAR7dZMVRkEWz0"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=twin+peaks,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJt3HwrOJ9j4ARbW6uAcmhz7I"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=golden+gate+park,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJY_dFYHKHhYARMKc772iLvnE"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=San+Francisco+City+Hall,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJY-bqepmAhYARSk9Xg_9tcLI"
+
+
+https://maps.googleapis.com/maps/api/geocode/json?address=Point+Bonita+Lighthouse,+San+Francisco,+CA&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ
+
+"place_id" : "ChIJSU5pvf2FhYARuDOFwnkMzfM"
