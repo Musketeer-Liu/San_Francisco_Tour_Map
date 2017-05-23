@@ -40,12 +40,13 @@ var Site = function(data) {
 var ViewModel = function() {
     var self = this
 
-    // --Build infowindows and markers--
+    // --Build infowindows and components--
     // Build infowindow layout template
     var windowLayout = '<div id="info"'
-                     + 'data-bind="template: '
-                        + '{ name: \'window-model\', '
-                        + 'data: currentSite }">'
+                     + 'data-bind="template: { '
+                         + 'name: \'window-model\', '
+                         + 'data: currentSite '
+                     + '}">'
                      + '</div>';
     this.infowindow = new google.maps.InfoWindow({
         content: windowLayout
@@ -64,7 +65,76 @@ var ViewModel = function() {
     this.site = ko.observableArray();
     this.currentSite = ko.observable(this.sites()[0]);
 
+    // Retrieve details from google maps places library
+    initialSites.forEach(function(placeId) {
+        var query = new google.maps.places.PlacesService(map);
+        query.getDetails({
+            placeId: placeId
+        }, function(place, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                var newSite = new Site(place);
 
+                // Google streetview image
+                $.ajax({
+                    url: "http://maps.googleapis.com/maps/api/streetview?",
+                    data: {
+                        "size": "400x200",
+                        "location": newSite.name
+                    },
+                    dataType: 'jsonp',
+                    success: function(result) {
+                        newSite.viewUrl = result[1][0];
+                    },
+                    error: function(error) {
+                        newSite.viewText = "Cannot achieve streetview"
+                    }
+                });
+
+                // Wikipedia info with link
+                $.ajax({
+                    url: "https://en.wikipedia.org/w/api.php?",
+                    data: {
+                        "action": "opensearch",
+                        "format": "json",
+                        "search": newSite.name
+                    },
+                    dataType: 'jsonp',
+                    success: function(result) {
+                        newSite.wikiText = result[2][0];
+                        newSite.wikiUrl = result[3][0];
+                    },
+                    error: function(error) {
+                        newSite.wikiText = "Cannot reach Wikipedia"
+                    }
+                });
+
+                // NY Times news with link
+                $.ajax({
+                    url: "http://api.nytimes.com/svc/search/v2/"
+                         + "articlesearch.json?",
+                    data: {
+                        "api-key"="a1f0af3853034860b76d8402243cefd7",
+                        "q": newSite.name
+                    },
+                    dataType: 'jsonp',
+                    success: function(result) {
+                        newSite.nytText = result[5][0];
+                        newSite.nytUrl = result[6][0];
+                    },
+                    error: function(error) {
+                        newSite.nytText = "Cannot reach NY Times"
+                    }
+                });
+
+                newSite.marker.addListener('click', function() {
+                    self.handleClick(newSite);
+                });
+                self.sites.push(newSite);
+            } else {
+                alert("Site List is messed");
+            }
+        });
+    });
 
 
 
