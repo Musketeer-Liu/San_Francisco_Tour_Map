@@ -65,7 +65,8 @@ var ViewModel = function() {
     this.site = ko.observableArray();
     this.currentSite = ko.observable(this.sites()[0]);
 
-    // Retrieve details from google maps places library
+    // --Retrieve details--
+    // Geo Data from google maps places library
     initialSites.forEach(function(placeId) {
         var query = new google.maps.places.PlacesService(map);
         query.getDetails({
@@ -158,5 +159,36 @@ var ViewModel = function() {
     });
 
 
+    // --Event Handle--
+    //Setup current site, infowindow and marker
+    this.handleClick = function(site) {
+        map.panTo(site.marker.getPosition());
+        self.currentSite(site);
+        self.changeColor(site.marker);
+        self.openInfo(site.marker, self.infowindow);
+    }
 
+    // Change current maker color upon click
+    this.changeColor = function(marker) {
+        var color = 'https://www.google.com/mapfiles/marker_purple.png'
+        marker.setIcon(color);
+        setTimeout(function() {
+            marker.setIcon(null)
+        }, 3500);
+    }
+
+    // Bind current infowindow to marker
+    this.openInfo = function(marker, window) {
+        if (window.marker != marker) {
+            window.marker = marker;
+            window.open(map, marker);
+        }
+    }
+
+    // Open detail panel
+    this.openDetail = ko.observable();
+    this.detail = function() {
+        var detail = self.openDetail(!self.openDetail());
+        return detail;
+    }
 }
