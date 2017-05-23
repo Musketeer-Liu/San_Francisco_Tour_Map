@@ -34,3 +34,38 @@ var Site = function(data) {
     this.nytText = "";
     this.nytUrl = "";
 }
+
+
+// ----ViewModel----
+var ViewModel = function() {
+    var self = this
+
+    // --Build infowindows and markers--
+    // Build infowindow layout template
+    var windowLayout = '<div id="info"'
+                     + 'data-bind="template: '
+                        + '{ name: \'window-model\', '
+                        + 'data: currentSite }">'
+                     + '</div>';
+    this.infowindow = new google.maps.InfoWindow({
+        content: windowLayout
+    });
+
+    // Bind infowindow to Knockout
+    var loaded = false;
+    google.maps.event.addListener(this.infowindow,
+                                  'domready',
+                                  function() {
+        if(!loaded) {
+            ko.applyBindings(self, $('#info')[0]);
+            loaded = true;
+        }
+    });
+    this.site = ko.observableArray();
+    this.currentSite = ko.observable(this.sites()[0]);
+
+
+
+
+
+}
