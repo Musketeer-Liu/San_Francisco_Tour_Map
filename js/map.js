@@ -1,3 +1,26 @@
+// ----Start----
+// Load Google Maps API with call back
+var map;
+let initMap = function {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+            lat: 37.79,
+            lng: -122.44
+        },
+        zoom: 13;
+    });
+    ko.applyBindings(new ViewModel());
+}
+$.getScript(
+    "https://maps.googleapis.com/maps/api/js?"
+    + "libraries=places"
+    + "&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ&v=3")
+.done(initMap)
+.fail(function() {
+    alert("Cannot use Google Map API")
+});
+
+
 // ----Model----
 // Initiate Site Data via place_id
 var initialSites = [
