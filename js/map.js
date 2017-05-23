@@ -1,24 +1,20 @@
 // ----Start----
 // Load Google Maps API with call back
 var map;
-let initMap = function {
+let initMap = function() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: 37.79,
-            lng: -122.44
-        },
-        zoom: 13;
+        center: {lat: 37.79, lng: -122.44},
+        zoom: 13
     });
     ko.applyBindings(new ViewModel());
 }
+
 $.getScript(
     "https://maps.googleapis.com/maps/api/js?"
     + "libraries=places"
     + "&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ&v=3")
 .done(initMap)
-.fail(function() {
-    alert("Cannot use Google Map API")
-});
+.fail(function(){alert("Cannot use Google Map API")});
 
 
 // ----Model----
@@ -46,7 +42,7 @@ var Site = function(data) {
     this.marker = new google.maps.Marker({
         map: map,
         title: data.name,
-        position: data.geometry.location;
+        position: data.geometry.location,
         animation: google.maps.Animation.BOUNCE
     });
 
@@ -63,13 +59,12 @@ var Site = function(data) {
 var ViewModel = function() {
     var self = this
 
-    // --Build infowindows and components--
-    // Build infowindow layout template
+    // --Setup infowindows and components--
+    // Setup infowindow layout template
     var windowLayout = '<div id="info"'
-                     + 'data-bind="template: { '
-                         + 'name: \'window-model\', '
-                         + 'data: currentSite '
-                     + '}">'
+                     + 'data-bind="template: '
+                        + '{ name: \'window-model\', '
+                        + 'data: currentSite }">'
                      + '</div>';
     this.infowindow = new google.maps.InfoWindow({
         content: windowLayout
@@ -85,11 +80,12 @@ var ViewModel = function() {
             loaded = true;
         }
     });
-    this.site = ko.observableArray();
+    this.sites = ko.observableArray();
     this.currentSite = ko.observable(this.sites()[0]);
 
+
     // --Retrieve details--
-    // Geo Data from google maps places library
+    // Geometry data from google maps places library
     initialSites.forEach(function(placeId) {
         var query = new google.maps.places.PlacesService(map);
         query.getDetails({
@@ -100,7 +96,7 @@ var ViewModel = function() {
 
                 // Google streetview image
                 $.ajax({
-                    url: "http://maps.googleapis.com/maps/api/streetview?",
+                    url: "https://maps.googleapis.com/maps/api/streetview?",
                     data: {
                         "size": "400x200",
                         "location": newSite.name
@@ -132,28 +128,27 @@ var ViewModel = function() {
                     }
                 });
 
-                // NY Times news with link
-                $.ajax({
-                    url: "http://api.nytimes.com/svc/search/v2/"
-                         + "articlesearch.json?",
-                    data: {
-                        "api-key"="a1f0af3853034860b76d8402243cefd7",
-                        "q": newSite.name
-                    },
-                    dataType: 'jsonp',
-                    success: function(result) {
-                        newSite.nytText = result[5][0];
-                        newSite.nytUrl = result[6][0];
-                    },
-                    error: function(error) {
-                        newSite.nytText = "Cannot reach NY Times"
-                    }
-                });
+                // // NY Times news with link
+                // $.ajax({
+                //     url: "http://api.nytimes.com/svc/search/v2/"
+                //          + "articlesearch.json?",
+                //     data: {
+                //         "api-key"="a1f0af3853034860b76d8402243cefd7",
+                //         "q": newSite.name
+                //     },
+                //     dataType: 'jsonp',
+                //     success: function(result) {
+                //         newSite.nytText = result[5][0];
+                //         newSite.nytUrl = result[6][0];
+                //     },
+                //     error: function(error) {
+                //         newSite.nytText = "Cannot reach NY Times"
+                //     }
+                // });
 
                 newSite.marker.addListener('click', function() {
                     self.handleClick(newSite);
                 });
-
                 self.sites.push(newSite);
             } else {
                 alert("Site List is messed");
@@ -167,10 +162,11 @@ var ViewModel = function() {
     this.selectedSites = ko.computed(function() {
         var select = self.filter().toLowerCase();
         if (!select) {
-            // Set all site visible with no input
             self.sites().forEach(function(site) {
                 return site.marker.setVisible(true);
             });
+            return self.sites();
+        } else {
             return self.sites().filter(function(site) {
                 var selected = site.name
                 .toLowerCase()
