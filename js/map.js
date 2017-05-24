@@ -7,14 +7,16 @@ const initMap = function() {
         zoom: 13
     });
     ko.applyBindings(new ViewModel());
-}
+};
 
 $.getScript(
     "https://maps.googleapis.com/maps/api/js?"
     + "libraries=places"
     + "&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ&v=3")
 .done(initMap)
-.fail(function(){alert("Cannot use Google Map API")});
+.fail(function(){
+    alert("Cannot use Google Map API");
+});
 
 
 // ----Model----
@@ -50,14 +52,12 @@ var Site = function(data) {
     this.viewUrl = "";
     this.wikiText = "";
     this.wikiUrl = "";
-    this.nytText = "";
-    this.nytUrl = "";
-}
+};
 
 
 // ----ViewModel----
 var ViewModel = function() {
-    var self = this
+    var self = this;
 
     // --Setup infowindows and components--
     // Setup infowindow layout template
@@ -94,28 +94,6 @@ var ViewModel = function() {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 var newSite = new Site(place);
 
-                // Google streetview image
-                $.ajax({
-                    url: "https://maps.googleapis.com/maps/api/streetview?",
-                    data: {
-                        "size": "400x200",
-                        "location": newSite.name
-                    },
-                    dataType: 'jsonp',
-                    success: function(result) {
-                        newSite.viewUrl = result[1][0];
-                    },
-                    error: function(error) {
-                        newSite.viewText = "Cannot achieve streetview"
-                    }
-                });
-                // Maybe another approach?
-                // var $.board = $('.window');
-                // viewUrl = 'http://maps.googleapis.com/maps/api/streetview?'
-                //         + 'size=600x400&location='newSite.name'';
-                // $.board.append('<img class="bgimg" src="'viewUrl'">');
-
-                // Wikipedia info with link
                 $.ajax({
                     url: "https://en.wikipedia.org/w/api.php?",
                     data: {
@@ -129,7 +107,7 @@ var ViewModel = function() {
                         newSite.wikiUrl = result[3][0];
                     },
                     error: function(error) {
-                        newSite.wikiText = "Cannot reach Wikipedia"
+                        newSite.wikiText = "Cannot reach Wikipedia";
                     }
                 });
 
@@ -172,16 +150,16 @@ var ViewModel = function() {
         self.currentSite(site);
         self.changeColor(site.marker);
         self.openInfo(site.marker, self.infowindow);
-    }
+    };
 
     // Change current maker color upon click
     this.changeColor = function(marker) {
         var color = 'https://www.google.com/mapfiles/marker_purple.png'
         marker.setIcon(color);
         setTimeout(function() {
-            marker.setIcon(null)
+            marker.setIcon(null);
         }, 3500);
-    }
+    };
 
     // Bind current infowindow to marker
     this.openInfo = function(marker, window) {
@@ -189,12 +167,12 @@ var ViewModel = function() {
             window.marker = marker;
             window.open(map, marker);
         }
-    }
+    };
 
     // Open detail panel
     this.openDetail = ko.observable();
     this.detail = function() {
         var detail = self.openDetail(!self.openDetail());
         return detail;
-    }
-}
+    };
+};

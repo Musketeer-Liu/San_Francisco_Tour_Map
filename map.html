@@ -11,15 +11,15 @@
 
 
     <body>
-        <div class="box">
-            <div id="bar">
+        <section class="box">
+            <aside id="bar">
                 <input type="text" data-bind="textInput: filter" placeholder="Select from Site List">
                 <ul data-bind="foreach: selectedSites">
                     <li data-bind="text: name, click: $parent.handleClick"></li>
                 </ul>
-            </div>
+            </aside>
             <main id="map"></main>
-        </div>
+        </section>
 
         <script type="text/html" id="window-model">
             <h2 data-bind="text: name"></h2>
@@ -34,46 +34,33 @@
             </button>
         </script>
 
-        <div class="window" data-bind="visible: openDetail, with: currentSite">
+        <section class="window" data-bind="visible: openDetail, with: currentSite">
             <div id="detail">
                 <h1 data-bind="text: name"></h1>
 
                 <hr>
-                <div>
-                    <img data-bind="viewUrl" src="viewUrl">
-                </div>
-
                 <p><a href="" data-bind="src: url, text: url"></a></p>
                 <address data-bind="text: address"></address>
 
-                <div data-bind="if: wikiText">
+                <div>
                     <p data-bind="text: wikiText"></p>
-                    <a href="" data-bind="if: wikiUrl, attr: {href: wikiUrl}" target="_blank">
+                    <a href="" data-bind="attr: {href: wikiUrl}">
                         Link to Wikipedia for more information
                     </a>
                 </div>
-
-<!--                 <div data-bind="if: nytText">
-                    <p data-bind="text: nytText"></p>
-                    <a href="" data-bind="if: nytUrl, attr: {href: nytUrl}" target="_blank">
-                        Link to NY Times for more information
-                    </a>
-                </div> -->
 
                 <hr>
                 <button class="button" data-bind="click: $parent.detail">
                     Close
                 </button>
             </div>
-        </div>
+        </section>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
         <script src="js/map.js"></script>
-
-        <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC9X1FY4lPSwURf4D6IDMbd--yTYF1xEfQ&v=3&callback=initMap"></script>
 
     </body>
 </html>

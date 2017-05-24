@@ -8,7 +8,7 @@ Setup:
 2. Click Site button in Site List or Marker in the map to select your interest
 3. Type site name from Site List search box to filter locations in the list
 4. Click Markers on the map to change color and read summy info in infowindow
-5. Click Details button in infowindow for detail of wiki and google streetview
+5. Click Details button in infowindow for details and link for Wikipedia
 
 Features:
 1. Markers and Site List are connected for selection
@@ -19,9 +19,8 @@ Resources:
 2. jQuery
 3. Google Maps
 4. Google Fonts
-5. Google Streetview
-6. Wikipedia
-7. NY Times
+5. Wikipedia
+6. NY Times
 
 Credit:
-Many thanks to Udacity Mentor Kar
+Many thanks to Udacity Mentor Karol
