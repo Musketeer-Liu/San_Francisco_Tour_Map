@@ -1,7 +1,7 @@
 // ----Start----
 // Load Google Maps API with call back
 var map;
-let initMap = function() {
+const initMap = function() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 37.79, lng: -122.44},
         zoom: 13
@@ -109,6 +109,11 @@ var ViewModel = function() {
                         newSite.viewText = "Cannot achieve streetview"
                     }
                 });
+                // Maybe another approach?
+                // var $.board = $('.window');
+                // viewUrl = 'http://maps.googleapis.com/maps/api/streetview?'
+                //         + 'size=600x400&location='newSite.name'';
+                // $.board.append('<img class="bgimg" src="'viewUrl'">');
 
                 // Wikipedia info with link
                 $.ajax({
@@ -127,24 +132,6 @@ var ViewModel = function() {
                         newSite.wikiText = "Cannot reach Wikipedia"
                     }
                 });
-
-                // // NY Times news with link
-                // $.ajax({
-                //     url: "http://api.nytimes.com/svc/search/v2/"
-                //          + "articlesearch.json?",
-                //     data: {
-                //         "api-key"="a1f0af3853034860b76d8402243cefd7",
-                //         "q": newSite.name
-                //     },
-                //     dataType: 'jsonp',
-                //     success: function(result) {
-                //         newSite.nytText = result[5][0];
-                //         newSite.nytUrl = result[6][0];
-                //     },
-                //     error: function(error) {
-                //         newSite.nytText = "Cannot reach NY Times"
-                //     }
-                // });
 
                 newSite.marker.addListener('click', function() {
                     self.handleClick(newSite);

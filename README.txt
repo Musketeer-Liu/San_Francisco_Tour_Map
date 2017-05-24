@@ -22,3 +22,6 @@ Resources:
 5. Google Streetview
 6. Wikipedia
 7. NY Times
+
+Credit:
+Many thanks to Udacity Mentor Kar
