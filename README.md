@@ -23,5 +23,5 @@ A mini Map utilizing Google Map API to facilite your tour in San Francisco
 
 ## **Credit:**
 Many thanks to Udacity Mentor Karol
-Many thnks to Udacity Reivewers' instruction!
-Especial thank to nkid ~ The icon idea is great
+Many thanks to Udacity Reivewers' instruction
+Especial thank to nkid: The icon idea is great
