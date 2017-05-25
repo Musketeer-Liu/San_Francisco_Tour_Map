@@ -48,8 +48,8 @@ var Site = function(data) {
         animation: google.maps.Animation.BOUNCE
     });
 
-    this.wikiText = "";
-    this.wikiUrl = "";
+    this.wikiText = ko.observable('');
+    this.wikiUrl = ko.observable('');
 };
 
 
@@ -101,11 +101,11 @@ var ViewModel = function() {
                     },
                     dataType: 'jsonp',
                     success: function(result) {
-                        newSite.wikiText = result[2][0];
-                        newSite.wikiUrl = result[3][0];
+                        newSite.wikiText(result[2][0]);
+                        newSite.wikiUrl(result[3][0]);
                     },
                     error: function(error) {
-                        newSite.wikiText = "Cannot reach Wikipedia";
+                        newSite.wikiText("Cannot reach Wikipedia");
                     }
                 });
 
