@@ -24,11 +24,11 @@ $.getScript(
 var initialSites = [
     "EipHb2xkZW4gR2F0ZSBCcmlkZ2UsIFNhbiBGcmFuY2lzY28sIENBLCBVU0E",
     "ChIJAQAAQIyAhYARRN3yIQG4hd4",
-    "ChIJueOuefqAhYARapAU-YtbztA",
-    "ChIJRb6WFtWGhYARLN9EOlXR2JI",
-    "ChIJ_T25cNd_j4ARehGmHe0pT84",
     "ChIJmRyMs_mAhYARpViaf6JEWNE",
     "ChIJSU5pvf2FhYARuDOFwnkMzfM",
+    "ChIJ_T25cNd_j4ARehGmHe0pT84",
+    "ChIJ48dHYImAhYARknLi-eNpMH8",
+    "ChIJueOuefqAhYARapAU-YtbztA",
     "ChIJt3HwrOJ9j4ARbW6uAcmhz7I",
     "ChIJY_dFYHKHhYARMKc772iLvnE",
     "ChIJY-bqepmAhYARSk9Xg_9tcLI"
@@ -39,7 +39,7 @@ var Site = function(data) {
     this.placeId = data.place_id;
     this.name = data.name;
     this.address = data.formatted_address;
-    this.url = data.website;
+    this.website = data.website;
 
     this.marker = new google.maps.Marker({
         map: map,
@@ -48,8 +48,6 @@ var Site = function(data) {
         animation: google.maps.Animation.BOUNCE
     });
 
-    this.viewText = "";
-    this.viewUrl = "";
     this.wikiText = "";
     this.wikiUrl = "";
 };
@@ -123,7 +121,7 @@ var ViewModel = function() {
 
 
     // --Filter site with connected marker--
-    this.filter = ko.observable("");
+    this.filter = ko.observable('');
     this.selectedSites = ko.computed(function() {
         var select = self.filter().toLowerCase();
         if (!select) {
@@ -154,7 +152,7 @@ var ViewModel = function() {
 
     // Change current maker color upon click
     this.changeColor = function(marker) {
-        var color = 'https://www.google.com/mapfiles/marker_purple.png'
+        var color = 'https://www.google.com/mapfiles/marker_purple.png';
         marker.setIcon(color);
         setTimeout(function() {
             marker.setIcon(null);

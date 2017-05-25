@@ -20,7 +20,6 @@ Resources:
 3. Google Maps
 4. Google Fonts
 5. Wikipedia
-6. NY Times
 
 Credit:
-Many thanks to Udacity Mentor Karol
+Many thanks to Udacity Mentor Karol and Udacity Reivewers' instruction!
