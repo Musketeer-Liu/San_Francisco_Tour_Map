@@ -20,8 +20,3 @@ A mini Map utilizing Google Map API to facilite your tour in San Francisco
 3. Google Maps
 4. Google Fonts
 5. Wikipedia
-
-## **Credit:**
-Many thanks to Udacity Mentor Karol
-Many thanks to Udacity Reivewers' instruction
-Especial thank to nkid: The icon idea is great
